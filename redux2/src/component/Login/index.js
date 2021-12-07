@@ -1,4 +1,4 @@
-import recat, { useEffect, useState } from "react";
+import Recat, { useEffect, useState } from "react";
 import Task from "./../Task";
 import useNavigate from "react-router-dom"
 import axios from "axios";
@@ -21,9 +21,9 @@ const Index = () => {
      }, []);
   const log = async () => {
     try {
-      const result = await axios.post(`http://localhost:5000/login`, {
-       email,
-         password,
+      const result = await axios.post(`${BASE_URL}/login`, {
+        email,
+        password,
       });
       const data = {
           user:result.data.result,
