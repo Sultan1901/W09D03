@@ -2,7 +2,7 @@ const initialState = {
   user: null,
   token: "",
 };
-const signIn = (state = initialState , action) => {
+const Login = (state = initialState , action) => {
   const { type, payload } = action;
   switch (type) {
     case "LOGIN":
@@ -16,7 +16,7 @@ const signIn = (state = initialState , action) => {
       return state;
   }
 };
-export default signIn;
+export default Login;
 export const sign = (data)=>{
     return { 
 

@@ -1,9 +1,10 @@
-import recat, { useEffect, useState,useNavigate } from "react";
+import recat, { useEffect, useState } from "react";
 import Task from "./../Task";
+import useNavigate from "react-router-dom"
 import axios from "axios";
-import  signIn  from "./../../rducers/login";
+import  sign  from "./../../reducers/login";
 import { useDispatch, useSelector } from "react-redux";
-const Lo = () => {
+const Index = () => {
   const state = useSelector((state) => {
     return state;
   });
@@ -11,19 +12,26 @@ const Lo = () => {
   const dispatch = useDispatch();
   const [local, setLocal] = useState("");
 //   const navigate = useNavigate();
-  const [logEmail, setLogEmail] = useState("");
-  const [logPassword, setLogPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+     useEffect(() => {
+       const token = localStorage.getItem("token");
+
+       setLocal(token);
+     }, []);
   const log = async () => {
     try {
-      const result = await axios.post(`${BASE_URL}/login`, {
-        email: logEmail,
-        password: logPassword,
+      const result = await axios.post(`http://localhost:5000/login`, {
+       email,
+         password,
       });
       const data = {
           user:result.data.result,
           token:result.data.token
-      }
-      dispatch(signIn(data))
+
+      }   ;   console.log(data);
+
+      dispatch(sign(data))
     } catch (error) {
         console.log(error);
     }
@@ -35,22 +43,22 @@ const Lo = () => {
         <h1>Login</h1>
         <input
           onChange={(e) => {
-            setLogEmail(e.target.value);
+            setEmail(e.target.value);
           }}
           type="email"
           placeholder="your email"
         ></input>
         <input
           onChange={(e) => {
-            setLogEmail(e.target.value);
+            setPassword(e.target.value);
           }}
           type="password"
           placeholder="your password"
         ></input>
-        <button onClick={signIn}>Login</button>
+        <button onClick={log}>Login</button>
       </div>
     </div>
   );
 };
 
-export default Lo;
+export default Index;

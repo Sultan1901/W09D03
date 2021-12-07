@@ -1,0 +1,29 @@
+*{
+    background-color: rgb(53, 35, 13);
+}
+.con{
+    margin-left: 550px;
+}
+input{
+    display: block;
+    background-color: rgb(255, 174, 127);
+    margin-top: 10px;
+}
+h1{
+    font-family: 'Courier New', Courier, monospace;
+    color: white
+}
+button{
+    margin-top:20px;
+    margin-left: 40px;
+    width: 60px;
+    height:30px;
+    background-color:green;
+    color:white;
+    border: none;
+    
+}
+li{
+    color: aliceblue;
+    font-size:2rem
+}
