@@ -1,5 +1,7 @@
 import './App.css';
 import Login from "./component/Login"
+import Task from "./component/Task";
+
 
 
 
@@ -11,8 +13,8 @@ function App() {
   return (
     <div className="App">
      React
-<Tasks />
      <Login/>
+     <Task/>
     </div>
   );
 }

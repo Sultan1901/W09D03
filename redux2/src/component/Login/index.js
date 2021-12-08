@@ -19,6 +19,8 @@ const Index = () => {
 
        setLocal(token);
      }, []);
+         console.log(state);
+
   const log = async () => {
     try {
       const result = await axios.post(`${BASE_URL}/login`, {
