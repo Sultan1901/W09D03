@@ -40,6 +40,14 @@ const Task = () => {
       console.log(error);
     }
   };
+  const update = async (id) => {
+    try {
+      const res = await axios.delete(`${BASE_URL}/updateTask/${id}`);
+      taskshow();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const [newtask, setNewtask] = useState("");
   const addtask = async () => {
     try {
@@ -59,10 +67,25 @@ const Task = () => {
       console.log(error);
     }
   };
+
  const logoutBTN = ()=>{
    localStorage.clear()
    navigate('/')
  }
+ const updateTask = async (id) => {
+   await axios.put(
+     `${BASE_URL}/updateTask/${id}`,
+     {
+       task: task,
+     },
+     {
+       headers: {
+         Authorization: `Bearer ${local}`,
+       },
+     }
+   );
+   taskshow(local);
+ };
   return (
     <div>
       <h1>Tasks</h1>
@@ -85,10 +108,18 @@ const Task = () => {
             >
               delete
             </button>
+            <input
+              onChange={(e) => {
+                setTask(e.target.value);
+                console.log(e);
+              }}
+              placeholder="update"
+            />
+            <button onClick={updateTask(e._id)}>update</button>
           </li>{" "}
         </ul>
-        
-      ))}<button onClick={logoutBTN}>signout</button>
+      ))}
+      <button onClick={logoutBTN}>signout</button>
     </div>
   );
 };
